@@ -84,7 +84,7 @@ public class YandexMarketPage extends Page {
         } catch (NumberFormatException e) {
             throw new PageException("The expected found products' amount's value should be a integer number, but \"" + expectedAmountString + "\" has been specified", e);
         }
-        Assert.assertEquals(productInstances.size(), expectedAmount);
+        Assert.assertEquals(expectedAmount, productInstances.size());
     }
 
     @ActionTitle("запоминает продукт")
@@ -112,8 +112,12 @@ public class YandexMarketPage extends Page {
 
     @ActionTitle("открывает все результаты поиска")
     public void openAllSearchResults() {
-        if (allResultsLink.isDisplayed()) {
-            allResultsLink.click();
+        try {
+            if (allResultsLink.isDisplayed()) {
+                allResultsLink.click();
+            }
+        } catch (NoSuchElementException e) {
+            log.warn("There is nothing horrible because the all search results link may not be presented on the search results page");
         }
     }
 
