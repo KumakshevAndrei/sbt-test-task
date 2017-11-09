@@ -12,7 +12,6 @@ import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
 import ru.sbtqa.tag.pagefactory.exceptions.PageException;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
-import sbt.test.elements.ProductInstance;
 
 /**
  * Created by Home on 09.11.2017.
@@ -28,6 +27,7 @@ public class YandexMarketFoundProductPage extends Page {
     public YandexMarketFoundProductPage() {
         PageFactory.initElements(new HtmlElementDecorator(
                 new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
+        Assert.assertTrue(PageFactory.getDriver().getTitle().toLowerCase().contains("купить по выгодной цене на яндекс.маркете"));
     }
 
     @ActionTitle("проверяет, что название продукта совпадает с названием сохраненного продукта")

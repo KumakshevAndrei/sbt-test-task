@@ -18,15 +18,10 @@ public class SearchLine extends HtmlElement {
     @FindBy(xpath = "//input[@id = 'text' and contains(@class, 'input__control') or @name = 'text' and contains(@class, 'input__control')]")
     public TextInput searchString;
 
-//    @Name("Найти")
-//    @FindBy(xpath = "//button[contains(@class, 'suggest2-form__button')]")
-//    public TextInput searchButton;
-
     @ActionTitle("ищет")
     public void startSearch(String text) {
         searchString.sendKeys(text);
         searchString.sendKeys(Keys.ENTER);
-//        searchButton.click();
     }
 
 }

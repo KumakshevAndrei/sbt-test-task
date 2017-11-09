@@ -2,9 +2,7 @@ package sbt.test.elements;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.htmlelements.element.TypifiedElement;
-import sbt.test.utils.PageUtils;
 
 /**
  * Created by Home on 09.11.2017.
@@ -31,7 +29,7 @@ public class ProductInstance extends TypifiedElement {
         return headerLinkElement;
     }
 
-    public void openProductInfo(){
+    public void openProductInfo() {
         getHeaderLinkElement().click();
     }
 

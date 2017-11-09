@@ -1,5 +1,6 @@
 package sbt.test.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -14,8 +15,8 @@ import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
 import ru.sbtqa.tag.pagefactory.exceptions.PageException;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementLocatorFactory;
-import sbt.test.utils.enums.LimitType;
 import sbt.test.utils.PageUtils;
+import sbt.test.utils.enums.LimitType;
 
 import javax.annotation.Nullable;
 import java.util.HashMap;
@@ -29,7 +30,7 @@ import java.util.Optional;
 public class YandexMarketExtendedSearchPage extends Page {
     private final static Logger log = LoggerFactory.getLogger(YandexMarketExtendedSearchPage.class);
 
-    public static final String YANDEX_MARKET_EXTENDED_SEARCH_PAGE_TITLE = "Расширенный поиск на Яндекс Маркете";
+    public static final String YANDEX_MARKET_EXTENDED_SEARCH_PAGE_TITLE = "Выбор по параметрам на Яндекс.Маркете";
 
     @FindBy(xpath = ".//div[contains(@class, 'n-filter-block_type_normal')]")
     private List<WebElement> filtersBlocks;
@@ -45,6 +46,7 @@ public class YandexMarketExtendedSearchPage extends Page {
     public YandexMarketExtendedSearchPage() {
         PageFactory.initElements(new HtmlElementDecorator(
                 new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
+        Assert.assertTrue(PageFactory.getDriver().getTitle().toLowerCase().contains(YANDEX_MARKET_EXTENDED_SEARCH_PAGE_TITLE.toLowerCase()));
     }
 
     @ActionTitle("указывает предел цены")

@@ -32,7 +32,7 @@ import java.util.Optional;
 public class YandexMarketPage extends Page {
     private final static Logger log = LoggerFactory.getLogger(YandexMarketPage.class);
 
-    static final String YANDEX_MARKET_PAGE_TITLE = "Яндекс Маркет";
+    static final String YANDEX_MARKET_PAGE_TITLE = "Яндекс.Маркет";
 
     @ElementTitle("Блок поиска")
     private SearchLine searchLine;
@@ -54,6 +54,7 @@ public class YandexMarketPage extends Page {
     public YandexMarketPage() {
         PageFactory.initElements(new HtmlElementDecorator(
                 new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
+        Assert.assertTrue(PageFactory.getDriver().getTitle().toLowerCase().contains(YANDEX_MARKET_PAGE_TITLE.toLowerCase()));
     }
 
     public static String getCurrentProductInstanceName() {
