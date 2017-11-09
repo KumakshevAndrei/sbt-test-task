@@ -25,7 +25,7 @@ public class YandexMainPage extends Page {
     @FindBy(xpath = ".//a[contains(@class, 'home-link') and text() = 'Маркет']")
     public Link marketLink;
 
-    public YandexMainPage(){
+    public YandexMainPage() {
         PageFactory.initElements(new HtmlElementDecorator(
                 new HtmlElementLocatorFactory(PageFactory.getDriver())), this);
     }
