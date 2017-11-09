@@ -2,6 +2,7 @@ package sbt.test.pages;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,7 @@ import javax.annotation.Nullable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Home on 09.11.2017.
@@ -125,16 +127,31 @@ public class YandexMarketExtendedSearchPage extends Page {
         }
     }
 
+    @ActionTitle("нажимает кнопку в текущем блоке фильтров")
+    public void clickButtonInCurrentFiltersBlock(String buttonText) throws PageException {
+        if (currentFiltersBlock == null) {
+            throw new PageException("Current filters block is not defined. You should select the current filters block before choosing the checkboxes into it");
+        }
+        try {
+            WebElement targetButton = PageUtils.getWebElement(currentFiltersBlock, By.xpath(".//button[contains(@class, 'button ') and .//span[contains(@class, 'button__text') and text() = '" + buttonText + "']]"));
+            targetButton.click();
+        } catch (NoSuchElementException e) {
+            throw new PageException("Current filters block does not contains any button with the text \"" + buttonText + "\"", e);
+        }
+    }
+
     @ActionTitle("выбирает в текущем блоке фильтров чекбоксы")
     public void selectCheckboxInCurrentFiltersBlock(List<String> checkboxesNames) throws PageException {
         if (currentFiltersBlock == null) {
             throw new PageException("Current filters block is not defined. You should select the current filters block before choosing the checkboxes into it");
         }
+        PageFactory.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);   //maybe it might be set in some property
+        JavascriptExecutor executor = (JavascriptExecutor) PageFactory.getDriver();
         for (String checkBoxName : checkboxesNames) {
             try {
                 WebElement targetCheckBox = PageUtils.getWebElement(currentFiltersBlock,
-                        By.xpath("//a[contains(@class, 'n-filter-block__item-link') and .//label[contains(@class, 'checkbox__label') and text() = '" + checkBoxName + "']]"));
-                targetCheckBox.click();
+                        By.xpath(".//span[contains(@class, 'checkbox') and .//label[contains(@class, 'checkbox__label') and text() = '" + checkBoxName + "']]//span[contains(@class, 'checkbox__box')]//input[contains(@class, 'checkbox__control')]"));
+                executor.executeScript("arguments[0].click()", targetCheckBox); //WA for the unclickable checkboxes
             } catch (NoSuchElementException e) {
                 throw new PageException("Current filters block does not contains the checkbox with the name \"" + checkBoxName + "\"", e);
             }
