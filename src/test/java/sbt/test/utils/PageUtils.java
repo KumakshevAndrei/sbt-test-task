@@ -13,4 +13,8 @@ public class PageUtils {
         return PageFactory.getDriver()
                 .findElement(by);
     }
+
+    public static WebElement getWebElement(WebElement parent, By by) {
+        return parent.findElement(by);
+    }
 }

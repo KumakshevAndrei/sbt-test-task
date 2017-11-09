@@ -6,6 +6,7 @@ import ru.sbtqa.tag.pagefactory.PageFactory;
 import ru.sbtqa.tag.pagefactory.annotations.ActionTitle;
 import ru.sbtqa.tag.pagefactory.annotations.ElementTitle;
 import ru.sbtqa.tag.pagefactory.annotations.PageEntry;
+import ru.sbtqa.tag.pagefactory.annotations.RedirectsTo;
 import ru.yandex.qatools.htmlelements.annotations.Name;
 import ru.yandex.qatools.htmlelements.element.Link;
 import ru.yandex.qatools.htmlelements.loader.decorator.HtmlElementDecorator;
@@ -15,8 +16,9 @@ import sbt.test.blocks.SearchLine;
 /**
  * Created by Home on 08.11.2017.
  */
-@PageEntry(title = "Яндекс")
+@PageEntry(title = YandexMainPage.YANDEX_MAIN_PAGE_TITLE)
 public class YandexMainPage extends Page {
+    public static final String YANDEX_MAIN_PAGE_TITLE = "Яндекс";
 
     @ElementTitle("Блок поиска")
     private SearchLine searchLine;

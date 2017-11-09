@@ -1,4 +1,4 @@
-package sbt.test.utils;
+package sbt.test.utils.enums;
 
 import java.util.regex.Pattern;
 

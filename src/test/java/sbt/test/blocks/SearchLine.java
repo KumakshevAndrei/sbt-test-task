@@ -15,7 +15,7 @@ import ru.yandex.qatools.htmlelements.element.TextInput;
 public class SearchLine extends HtmlElement {
 
     @Name("Строка поиска")
-    @FindBy(xpath = "//input[@id = 'text' and contains(@class, 'input__control')] or @name = 'text' and contains(@class, 'input__control')]")
+    @FindBy(xpath = "//input[@id = 'text' and contains(@class, 'input__control') or @name = 'text' and contains(@class, 'input__control')]")
     public TextInput searchString;
 
 //    @Name("Найти")
