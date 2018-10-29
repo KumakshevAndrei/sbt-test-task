@@ -1,4 +1,4 @@
-package com.sbt.test;
+package com.sbt.test.controller;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,6 +20,6 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Got it!";
+        return "test";
     }
 }
