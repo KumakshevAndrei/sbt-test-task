@@ -1,0 +1,15 @@
+{
+  "name": "sbt-test-task",
+  "scripts": {
+  },
+  "env": {
+  },
+  "formation": {
+  },
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+
+  ]
+}
