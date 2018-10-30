@@ -17,6 +17,7 @@ public class ServletContextInitializer implements ServletContextListener {
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
+        Utils.getInstance().closeResources();
         log.info("Application context has been destroyed!");
     }
 }
